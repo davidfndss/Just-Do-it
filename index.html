@@ -2,32 +2,99 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Just do it.</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/mediaqueries.css">
+    <script src="script/main.js" defer></script>
 </head>
 <body>
 
     <header></header>
 
     <main>
-        <h1></h1>
+
+        <h1>Just do it.</h1>
+
         <section id="addtaskarea">
-            <form>
-                <input type="text">
-                <button id="addbtn"> </button>
+            <form id="addtaskform">
+                <input type="text" id="maininput">
+                <button onclick="create()">
+                    <span class="material-symbols-outlined">add</span>
+                </button>
             </form>
         </section>
+
+        <hr style="margin-top: 10px; margin-bottom: 10px">
+
+        <section id="editarea" class="hide">
+            <input type="text">
+            <button id="cancelbtn">Cancelar</button>
+        </section>
+
             <article>
                 <form id="searchnfilter">
                     <input type="text">
-                    <select></select>
+                    <button class="hide">
+                        <span class="material-symbols-outlined">backspace</span>
+                    </button>
+                    <select>
+                        <option value="">-</option>
+                        <option value="">A fazer</option>
+                        <option value="">Feito</option>
+                    </select>
                 </form>
+            </article>
+
+            <article id="to-do-area">
+                <div class="todo">
+                    <h2>div teste</h2>
+                    <div id="btnarea">
+
+                        <button id="donebtn">
+                            <span class="material-symbols-outlined">done</span>
+                        </button>
+                        
+                        <button id="editbtn">
+                            <span class="material-symbols-outlined">edit</span>   
+                        </button>
+                        
+                        <button id="deletebtn">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="todo done">
+                    <h2>div teste 2</h2>
+                    <div id="btnarea">
+
+                        <button id="donebtn">
+                            <span class="material-symbols-outlined">
+                            done
+                            </span></button>
+
+                        <button id="editbtn">
+                            <span class="material-symbols-outlined">
+                                edit
+                                </span>
+                        </button>
+
+                        <button id="deletebtn">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+
+                    </div>
+                </div>
 
             </article>
 
         
     </main>
-    
+
 </body>
 </html>
