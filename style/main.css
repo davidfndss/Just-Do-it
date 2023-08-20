@@ -26,6 +26,8 @@ font-family: 'REM', sans-serif; */
     --color2: darkblue;
     --color3: #F0F0F0;
     --color4: #151515;
+    --color5: rgb(110, 233, 110);
+    --color6: rgb(165, 165, 165);
 }
 
 *{
@@ -67,13 +69,14 @@ form#addtaskform{
 
 form#addtaskform input{
     padding: 12px;
-    width: 90%;
+    width: 83%;
     border-radius: 8px 0px 0px 8px;
     border: white;
 }
 
-form#addtaskform button{
-    padding: 4px;
+form#addtaskform > button{
+    width: 17%;
+    padding: 4px 0px 4px 0px;
     border-radius: 0px 8px 8px 0px;
     border: var(--color2) solid 3px;
 }
@@ -83,18 +86,45 @@ button{
     color: white;
 }
 
-
-
 .hide{
     display: none;
 }
+
+/*Search n Filter---------------------*/
+
+form#searchnFilter{
+    display: flex;
+    align-items: center;
+}
+
+form#searchnFilter input{
+    width: 55%;
+    border-radius: 8px 0px 0px 8px;
+    height: 35px;
+    padding: 2px 0px 2px 12px;
+    border: white;
+}
+
+form#searchnFilter select{
+    width: 28%;
+    height: 39px;
+    border: white;
+    border-left: var(--color6) solid 1.5px;
+}
+
+form#searchnFilter button{
+    width: 17%;
+    border-radius: 0px 8px 8px 0px;
+    padding: 3px 3px 3px 0px;
+    border: var(--color2) solid 3px;
+}
+
 
 
 /*to-do-area---------------------*/
 
 .todo{
     padding: 0px 0px 0px 4px;
-    border: red 2px solid;
     border-radius: 10px;
     width: 100%;
     display: flex;
@@ -111,17 +141,26 @@ div.todo h2{
     font-size: 22px;
 }
 
-#btnArea{
-    background-color: var(--color4);
+.btnArea{
     padding: 4px;
     border-radius: 10px;
 }
 
-div#btnArea button{
+div.btnArea > button{
     padding: 4px;
     border-radius: 50px;
     color: white;
     background-color: var(--color2);
     border: 4px solid var(--color2);
     margin-right: 3px;
+}
+
+.done{
+    text-decoration: line-through;
+    background-color: var(--color5);
+    color: white;
+}
+
+.teste{
+    border: red solid 2px;
 }

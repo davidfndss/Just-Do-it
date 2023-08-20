@@ -2,15 +2,55 @@
 let input = document.getElementById("maininput")
 let form = document.getElementById("addtaskform")
 let todoArea = document.getElementById("to-do-area")
-let todo = document.querySelector(".todo")
+
 let btnArea
 
 /*--------- Functions ---------*/
-function create(){
+function createButtons(divToDo){
 
+    
+
+    btnArea = document.createElement("div")
+    btnArea.classList.add = "btnArea"
+
+    //done button
+    let doneBtn = document.createElement("button")
+    
+    let doneSpan = document.createElement("span")
+    doneSpan.classList.add("material-symbols-outlined")
+    doneSpan.innerText = "done"
+    doneBtn.appendChild(doneSpan)
+    btnArea.appendChild(doneBtn)
+
+    /*//delete button
+    let deleteBtn = document.createElement("button")
+
+    let deleteSpan = document.createElement("span")
+    deleteSpan.classList.add("material-symbols-outlined")
+    deleteSpan.innerText = "delete"
+    deleteBtn.appendChild(deleteSpan)
+    btnArea.appendChild(deleteBtn)
+    deleteBtn.classList.add("hide")*/
+    
+
+    doneBtn.addEventListener("click", function(){
+        divToDo.classList.add("done")
+        //doneBtn.classList.add("hide")
+        //deleteBtn.classList.remove("hide")
+
+    })
+
+    /*deleteBtn.addEventListener("click", function(){
+        divToDo.remove()
+    })*/
+
+}
+
+function create(){
     let toDoText = input.value
 
     if(!toDoText){
+        input.focus()
         return alert("Dê um nome para sua tarefa")
     }
 
@@ -21,47 +61,18 @@ function create(){
     h2.textContent = input.value
     divToDo.appendChild(h2)
 
-    btnArea = document.createElement("div")
-    btnArea.id = "btnArea"
+    createButtons(divToDo)
 
-    //done button
-    doneBtn = document.createElement("button")
-    
-    let doneSpan = document.createElement("span")
-    doneSpan.classList.add("material-symbols-outlined")
-    doneSpan.innerText = "done"
-    doneBtn.appendChild(doneSpan)
-    btnArea.appendChild(doneBtn)
-
-    //edit button
-    editBtn = document.createElement("button")
-
-    let editSpan = document.createElement("span")
-    editSpan.classList.add("material-symbols-outlined")
-    editSpan.innerText = "edit"
-    editBtn.appendChild(editSpan)
-    btnArea.appendChild(editBtn)
-
-    //delete button
-    deleteBtn = document.createElement("button")
-
-    let deleteSpan = document.createElement("span")
-    deleteSpan.classList.add("material-symbols-outlined")
-    deleteSpan.innerText = "delete"
-    deleteBtn.appendChild(deleteSpan)
-    btnArea.appendChild(deleteBtn)
-
-    
     divToDo.appendChild(btnArea)
+
     todoArea.appendChild(divToDo)
 
     input.focus()
     input.value = ""
 }
 
-
-
 /*----------- Events ----------*/
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 })
+
