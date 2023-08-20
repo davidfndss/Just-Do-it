@@ -146,7 +146,7 @@ div.todo h2{
     border-radius: 10px;
 }
 
-div.btnArea > button{
+button{
     padding: 4px;
     border-radius: 50px;
     color: white;
@@ -163,4 +163,11 @@ div.btnArea > button{
 
 .teste{
     border: red solid 2px;
+}
+
+p{
+    text-align: center;
+    color: var(--color6);
+    margin-top: 8px;
+    font-size: 13px;
 }

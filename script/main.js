@@ -3,6 +3,7 @@ let input = document.getElementById("maininput")
 let form = document.getElementById("addtaskform")
 let todoArea = document.getElementById("to-do-area")
 
+
 let btnArea
 
 /*--------- Functions ---------*/
@@ -35,6 +36,8 @@ function createButtons(divToDo){
         doneBtn.classList.add("hide")
         deleteBtn.classList.remove("hide")
 
+        todoArea.appendChild(divToDo)
+
     })
 
     deleteBtn.addEventListener("click", function(){
@@ -44,6 +47,11 @@ function createButtons(divToDo){
 }
 
 function create(){
+
+
+    let p = document.getElementById("message")
+    if(p){p.remove()}
+
     let toDoText = input.value
 
     if(!toDoText){
