@@ -81,6 +81,7 @@ form#addtaskform > button{
     border: var(--color2) solid 3px;
 }
 
+
 button{
     background-color: var(--color2);
     color: white;
