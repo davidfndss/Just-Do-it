@@ -64,9 +64,16 @@ function create(){
     let divToDo = document.createElement("div")
     divToDo.classList.add("todo")
 
-    let h2 = document.createElement("h2")
+    /*let h2 = document.createElement("h2")
     h2.textContent = input.value
+    divToDo.appendChild(h2)*/
+
+    let h2 = document.createElement("li")
+    h2.innerHTML = `<input type="text" value="${toDoText}" readonly>`
     divToDo.appendChild(h2)
+
+    
+
 
     createButtons(divToDo)
 
