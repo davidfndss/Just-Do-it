@@ -16,6 +16,7 @@ function createButtons(divToDo){
     
     let doneSpan = document.createElement("span")
     doneSpan.classList.add("material-symbols-outlined")
+    doneBtn.classList.add("doneBtn")
     doneSpan.innerText = "done"
     doneBtn.appendChild(doneSpan)
     divToDo.appendChild(doneBtn)
@@ -33,10 +34,11 @@ function createButtons(divToDo){
 
     doneBtn.addEventListener("click", function(){
         divToDo.classList.add("done")
-        doneBtn.classList.add("hide")
+        doneBtn.remove()
         deleteBtn.classList.remove("hide")
 
         todoArea.appendChild(divToDo)
+        divToDo.classList.remove("todo")
 
     })
 

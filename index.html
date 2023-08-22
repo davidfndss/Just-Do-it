@@ -21,7 +21,7 @@
         <h1>Just do it.</h1>
 
         <section id="addtaskarea">
-            <form id="addtaskform">
+            <form id="addtaskform" autocomplete="off">
                 <input type="text" id="maininput">
                     <button onclick="create()">
                         <span class="material-symbols-outlined">add</span>
@@ -48,9 +48,13 @@
                         <option value="">Feito</option>
                     </select>
 
-                    <button id="editbtn" onclick="receiveButtons()">
+                    <button id="editbtn">
                         <span class="material-symbols-outlined">edit</span>
                     </button>
+                    <button id="goBackBtn" class="hide">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                    </button>
+
                 </form>
             </article>
 
@@ -88,7 +92,6 @@
 
             <p id="message">Nenhuma tarefa adicionada ainda</p>
 
-        
     </main>
 
 </body>
