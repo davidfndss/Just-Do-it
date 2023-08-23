@@ -26,7 +26,7 @@ font-family: 'REM', sans-serif; */
     --color2: darkblue;
     --color3: #F0F0F0;
     --color4: #151515;
-    --color5: rgb(110, 233, 110);
+    --color5: transparent;
     --color6: rgb(165, 165, 165);
 }
 
@@ -42,24 +42,37 @@ font-family: 'REM', sans-serif; */
 body{
     height: 100vh;
     width: 100vw;
-    background-image: url(../img/dark.jpg);
+    background-image: url(../img/bg.jpg);
+    background-color: #053056;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 main{
     margin: auto;
-    margin-top: 40px;
+    margin-top: 100px;
     width: 80%;
-    background-color: #fdfdfd;
+    background-color: transparent;
+    color: white;
+    backdrop-filter: blur(20px);
     padding: 20px;
     border-radius: 15px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.534);
+    transition: transform .5s, height .2s ease;
 }
 
 h1{
     font-family: 'Paytone One', sans-serif;
     font-weight: 900;
     text-align: center;
+    margin-bottom: 10px;
+}
+
+.hr{
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    border: 1px solid var(--color6);
 }
 
 form#addtaskform{
@@ -71,7 +84,6 @@ form#addtaskform input{
     padding: 12px;
     width: 83%;
     border-radius: 8px 0px 0px 8px;
-    border: white;
 }
 
 form#addtaskform > button{
@@ -124,6 +136,10 @@ form#searchnFilter button{
 
 /*to-do-area---------------------*/
 
+li{
+    list-style-type: none 
+}
+
 .todo{
     padding: 0px 0px 0px 4px;
     border-radius: 10px;
@@ -134,13 +150,22 @@ form#searchnFilter button{
     align-items: center;
     justify-content: space-between;
     margin-top: 3px;
+    background-color: transparent;
+    height: 45px;
 }
 
-div.todo h2{
+.todo:hover{
+    height: 45px;
+}
+
+div.todo input{
     font-family: 'REM', sans-serif;
     font-weight: 500;
     font-size: 22px;
+    border: none;
+    background-color: transparent;
 }
+
 
 button{
     padding: 4px;
@@ -166,10 +191,14 @@ button{
     color: white;
 }
 
-div.done h2{
+div.done input{
     font-family: 'REM', sans-serif;
     font-weight: 500;
     font-size: 22px;
+    border: none;
+    background-color: var(--color5);
+    text-decoration: line-through;
+    color: white;
 }
 
 .teste{
@@ -181,4 +210,22 @@ p{
     color: var(--color6);
     margin-top: 8px;
     font-size: 13px;
+}
+
+.doneBtn{
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.doneBtn:hover{
+    background-color: rgb(110, 233, 110);
+    border-color: transparent;
+    transition: 0.3s ease;
+}
+
+.deleteBtn{
+
+}
+.editBtn{
+
 }
