@@ -1,1 +1,55 @@
 @charset "UTF-8";
+
+/* Typical Device breakpoints
+------------------------------
+Telas Pequenas: até 600px
+Celular: 600px até 768px
+Tablet: 768px até 992px
+Desktop: 992px até 1200px
+Grandes telas: + de 1200px
+*/
+
+@media screen and (min-width: 300px) and (max-width:600px){
+    main{
+        border: solid blue 3px;
+    }
+
+    div.todo input{
+        width: 80%;
+        font-size: 18px;
+    }
+    
+    button{
+        width: 40px; 
+    }
+}
+
+
+/*Celular: 600px até 768px*/
+@media screen and (min-width: 500px) and (max-width: 768px){
+
+    main{
+        border: 3px solid red;
+        margin: auto;
+        margin-top: 100px;
+        width: 70%;
+        background-color: transparent;
+        color: white;
+        backdrop-filter: blur(20px);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.534);
+        transition: transform .5s, height .2s ease;
+    }
+
+    div.todo input{
+        width: 80%;
+        font-size: 18px;
+    }
+    
+    button{
+        width: 40px; 
+    }
+}
+
+/*Tablet: 768px até 992px*/

@@ -28,6 +28,7 @@ function createButtons(divToDo){
     deleteBtn.appendChild(deleteSpan);
     divToDo.appendChild(deleteBtn);
     deleteBtn.classList.add("hide");
+    deleteBtn.classList.add("deleteBtn")
     
 
     doneBtn.addEventListener("click", function(){

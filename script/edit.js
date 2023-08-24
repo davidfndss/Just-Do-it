@@ -1,5 +1,5 @@
 //Atributions---------------
-let mainEditBtn = document.getElementById("editbtn");
+let mainEditBtn = document.getElementById("mainEditBtn");
 let goBackBtn = document.getElementById("goBackBtn");
 let addTaskArea = document.getElementById("addTaskArea")
 

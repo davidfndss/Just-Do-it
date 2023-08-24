@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="style/mediaqueries.css">
     <script src="script/main.js" defer></script>
     <script src="script/edit.js" defer></script>
+    <script src="script/searchnFilter.js" defer></script>
 </head>
 <body>
 
@@ -22,7 +23,7 @@
 
         <section id="addTaskArea">
             <form id="addtaskform" autocomplete="off">
-                <input type="text" id="maininput">
+                <input type="text" id="maininput" placeholder="Adicione uma tarefa!">
                     <button id="addBtn">
                         <span class="material-symbols-outlined">add</span>
                     </button>
@@ -31,24 +32,19 @@
 
         <hr class="hr">
 
-        <section id="editarea" class="hide">
-            <input type="text">
-            <button id="cancelbtn">Cancelar</button>
-        </section>
-
             <article>
                 <form id="searchnFilter">
-                    <input type="text" placeholder="Pesquisar...">
-                    <button class="hide">
-                        <span class="material-symbols-outlined">backspace</span>
-                    </button>
+                    <input  id="sInput" type="text" placeholder="Pesquisar...">
+                    
                     <select>
-                        <option value="">-</option>
+                        <option value="default">-</option>
                         <option value="">A fazer</option>
                         <option value="">Feito</option>
                     </select>
-
-                    <button id="editbtn">
+                    <button id="backSpaceBtn">
+                        <span class="material-symbols-outlined">backspace</span>
+                    </button>
+                    <button id="mainEditBtn">
                         <span class="material-symbols-outlined">edit</span>
                     </button>
                     <button id="goBackBtn" class="hide">
