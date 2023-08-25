@@ -129,20 +129,8 @@ form#searchnFilter select{
     height: 37px;
     border: white;
     border-left: var(--color6) solid 1.5px;
-
 }
 
-form#searchnFilter > button#backSpaceBtn{
-    background-color: var(--color5);
-    width: 10%;
-    border: white solid 3px;
-    display: none;
-}
-
-form#searchnFilter > button#backSpaceBtn:hover{
-    background-color: var(--color9);   
-    transition: .4s ease;
-}
 
 form#searchnFilter > button#mainEditBtn{
     background-color: var(--color2);

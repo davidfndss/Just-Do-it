@@ -42,11 +42,11 @@ function toggleTodoButtons(){
             });
 
 
-            let parent = editBtn.closest("div");
-            let todoInput = parent.querySelector(".todoInput");
+            let parentDiv = editBtn.closest("div");
+            let taskName = parentDiv.querySelector(".taskName");
 
-            todoInput.removeAttribute("readonly");
-            todoInput.focus();
+            taskName.removeAttribute("readonly");
+            taskName.focus();
 
             editBtn.classList.add("hide");
             saveBtn.classList.remove("hide");
@@ -55,9 +55,9 @@ function toggleTodoButtons(){
 
         saveBtn.addEventListener("click", function (){
 
-            let parent = saveBtn.closest("div");
-            let todoInput = parent.querySelector(".todoInput");
-            todoInput.setAttribute("readonly", true);
+            let parentDiv = saveBtn.closest("div");
+            let taskName = parentDiv.querySelector(".taskName");
+            taskName.setAttribute("readonly", true);
 
             todos.forEach(function (otherTodo) {
                 let otherEditBtn = otherTodo.querySelector(".editBtn");

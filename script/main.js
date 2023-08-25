@@ -9,9 +9,8 @@ function createButtons(divToDo){
 
     
 
-    //done button
+    //done button create and append
     let doneBtn = document.createElement("button");
-    
     let doneSpan = document.createElement("span");
     doneSpan.classList.add("material-symbols-outlined");
     doneBtn.classList.add("doneBtn");
@@ -19,9 +18,8 @@ function createButtons(divToDo){
     doneBtn.appendChild(doneSpan);
     divToDo.appendChild(doneBtn);
 
-    //delete button
+    //delete button create and append
     let deleteBtn = document.createElement("button");
-
     let deleteSpan = document.createElement("span");
     deleteSpan.classList.add("material-symbols-outlined");
     deleteSpan.innerText = "delete";
@@ -63,12 +61,9 @@ function create(){
     let divToDo = document.createElement("div");
     divToDo.classList.add("todo");
 
-    /*let h2 = document.createElement("h2")
-    h2.textContent = input.value
-    divToDo.appendChild(h2)*/
 
     let li = document.createElement("li");
-    li.innerHTML = `<input type="text" class="todoInput" value="${toDoText}" readonly>`;
+    li.innerHTML = `<input type="text" class="taskName" value="${toDoText}" readonly>`;
     divToDo.appendChild(li);
 
     
