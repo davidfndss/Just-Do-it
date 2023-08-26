@@ -4,7 +4,6 @@ let snfForm = document.getElementById("searchnFilter")
 // Search Input
 let searchBar = document.getElementById("searchBar");
 
-
 //Search function
 searchBar.addEventListener("input", function search(){
     
@@ -69,4 +68,3 @@ select.addEventListener("change", function filter(){
 snfForm.addEventListener("submit", function(e){
     e.preventDefault()
 })
-

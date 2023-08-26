@@ -6,7 +6,7 @@
     <title>Just do it.</title>
 
     <!--Favicon-->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 
     <!--Google Icons-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -28,45 +28,47 @@
 
     <main>
 
-        <h1>Just do it.</h1>
+        <h1>Just Do it.</h1>
 
         <section id="addTaskArea">
             <form id="addtaskform" autocomplete="off">
-                <input type="text" id="maininput" placeholder="Adicione uma tarefa!">
+                <input type="text" id="maininput" placeholder="Adicione uma tarefa">
                     <button id="addBtn">
                         <span class="material-symbols-outlined">add</span>
                     </button>
             </form>
         </section>
 
-        <hr class="hr">
+        <br>
 
-            <article>
-                <form id="searchnFilter">
-                    <input id="searchBar" type="text" placeholder="Pesquisar..." autocomplete="off">
+        <article>
+            <form id="searchnFilter">
+                <input id="searchBar" type="text" placeholder="Pesquisar..." autocomplete="off">
 
-                    <select id="filter">
-                        <option value="default">-</option>
-                        <option value="todo">A fazer</option>
-                        <option value="done">Feito</option>
-                    </select>    
-                    
-                    <button id="mainEditBtn">
-                        <span class="material-symbols-outlined">edit</span>
-                    </button>
+                <select id="filter">
+                    <option value="default">-</option>
+                    <option value="todo">A fazer</option>
+                    <option value="done">Feito</option>
+                </select>    
+                
+                <button id="mainEditBtn">
+                    <span class="material-symbols-outlined">edit</span>
+                </button>
 
-                    <button id="goBackBtn" class="hide">
-                        <span class="material-symbols-outlined">arrow_back</span>
-                    </button>
+                <button id="goBackBtn" class="hide">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </button>
 
-                </form>
-            </article>
+            </form>
+        </article>
 
-            <article id="to-do-area"><!--All tasks will be added here--></article>
+        <article id="to-do-area"><!--All tasks will be added here--></article>
 
-            <p id="message">Nenhuma tarefa adicionada ainda</p>
+        <p id="message">Nenhuma tarefa adicionada ainda :(</p>
 
     </main>
+
+    <footer id="margin"></footer>
 
 </body>
 </html>

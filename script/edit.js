@@ -3,6 +3,8 @@ let mainEditBtn = document.getElementById("mainEditBtn");
 let goBackBtn = document.getElementById("goBackBtn");
 let addTaskArea = document.getElementById("addTaskArea")
 
+let sBar = document.getElementById("searchBar")
+
 //Functions---------------
 function toggleTodoButtons(){
 
@@ -88,6 +90,9 @@ mainEditBtn.addEventListener("click", (e) => {
     e.preventDefault();
     toggleTodoButtons();
     addTaskArea.classList.add("hide")
+
+   
+    sBar.classList.add("hide")
 })
 
 goBackBtn.addEventListener("click", (e) => {
@@ -111,5 +116,5 @@ goBackBtn.addEventListener("click", (e) => {
         goBackBtn.classList.add("hide");
         addTaskArea.classList.remove("hide");
 
-            
+        sBar.classList.remove("hide")
 });

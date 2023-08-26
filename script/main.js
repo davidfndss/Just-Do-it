@@ -78,6 +78,8 @@ function create(){
     input.value = "";
 }
 
+
+
 /*----------- Events ----------*/
 form.addEventListener("submit", (e) => {
     e.preventDefault();
