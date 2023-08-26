@@ -10,12 +10,12 @@ Grandes telas: + de 1200px
 */
 
 @media screen and (min-width: 300px) and (max-width:600px){
-    main{
-        border: solid blue 3px;
-    }
 
     div.todo input{
-        width: 80%;
+        font-size: 18px;
+    }
+
+    div.done input{
         font-size: 18px;
     }
     
@@ -29,21 +29,16 @@ Grandes telas: + de 1200px
 @media screen and (min-width: 500px) and (max-width: 768px){
 
     main{
-        border: 3px solid red;
-        margin: auto;
-        margin-top: 100px;
         width: 70%;
-        background-color: transparent;
-        color: white;
-        backdrop-filter: blur(20px);
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 0 50px rgba(0, 0, 0, 0.534);
-        transition: transform .5s, height .2s ease;
     }
 
     div.todo input{
-        width: 80%;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    div.done input{
+        width: 100%;
         font-size: 18px;
     }
     
@@ -53,10 +48,75 @@ Grandes telas: + de 1200px
 }
 
 /*Tablet: 768px até 992px*/
-@media screen and (min-width: 769px) and (max-width: 992px){}
+@media screen and (min-width: 769px) and (max-width: 992px){
+
+    main{
+        width: 60%;
+    }
+
+    h1{
+        font-size: 40px;
+    }
+
+    div.todo input{
+        width: 100%;
+        font-size: 20px;
+    }
+
+    div.done input{
+        width: 100%;
+        font-size: 20px;
+    }
+
+    button{
+        width: 40px; 
+    }
+}
 
 /*Desktop: 993px até 1200px*/
-@media screen and (min-width: 993px) and (max-width: 1200px){}
+@media screen and (min-width: 993px) and (max-width: 1200px){
+    main{
+        width: 700px;
+    }
+
+    h1{
+        font-size: 40px;
+    }
+
+    div.todo input{
+        width: 100%;
+        font-size: 25px;
+    }
+    div.done input{
+        width: 100%;
+        font-size: 25px;
+    }
+
+    button{
+        width: 40px; 
+    }
+}
 
 /*Grandes telas: + de 1200px*/
-@media screen and (min-width: 1201px){}
+@media screen and (min-width: 1201px){
+    main{
+        width: 700px;
+    }
+
+    h1{
+        font-size: 40px;
+    }
+
+    div.todo input{
+        width: 100%;
+        font-size: 25px;
+    }
+    div.done input{
+        width: 100%;
+        font-size: 25px;
+    }
+
+    button{
+        width: 40px; 
+    }
+}

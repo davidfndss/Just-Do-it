@@ -24,7 +24,7 @@ function createButtons(divToDo){
     deleteSpan.classList.add("material-symbols-outlined");
     deleteSpan.innerText = "delete";
     deleteBtn.appendChild(deleteSpan);
-    divToDo.appendChild(deleteBtn);
+    // (ignorar) append child delete btn estava aqui ---
     deleteBtn.classList.add("hide");
     deleteBtn.classList.add("deleteBtn")
     
@@ -32,7 +32,9 @@ function createButtons(divToDo){
     doneBtn.addEventListener("click", function(){
         divToDo.classList.add("done");
         doneBtn.remove();
+        divToDo.appendChild(deleteBtn);
         deleteBtn.classList.remove("hide");
+
 
         todoArea.appendChild(divToDo);
         divToDo.classList.remove("todo");
@@ -40,14 +42,20 @@ function createButtons(divToDo){
     });
 
     deleteBtn.addEventListener("click", function(){
-        divToDo.remove();
+       
+        //fade-out animation when delete task
+        divToDo.classList.add("fadeOut")
+        setTimeout(() => {
+            divToDo.remove();
+        }, 500)
+        
     });
 
 };
 
-function create(){
+function createTasks(){
 
-
+    //remove the message "Nenhuma tarefa adicionada ainda :("
     let p = document.getElementById("message");
     if(p){p.remove()};
 
@@ -61,16 +69,16 @@ function create(){
     let divToDo = document.createElement("div");
     divToDo.classList.add("todo");
 
-
     let li = document.createElement("li");
-    li.innerHTML = `<input type="text" class="taskName" value="${toDoText}" readonly>`;
+    li.innerHTML = `<input type="text" class="taskName" value=" ${toDoText} " readonly>`;
     divToDo.appendChild(li);
-
-    
-
 
     createButtons(divToDo);
 
+    // add task animation
+   setTimeout(() => {
+        divToDo.classList.add("taskAddAnm")
+    }, 300);
 
     todoArea.appendChild(divToDo);
 
@@ -86,5 +94,5 @@ form.addEventListener("submit", (e) => {
 })
 
 addBtn.addEventListener("click", function () {
-    create();
+    createTasks();
 })

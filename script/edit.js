@@ -1,9 +1,10 @@
 //Atributions---------------
 let mainEditBtn = document.getElementById("mainEditBtn");
 let goBackBtn = document.getElementById("goBackBtn");
-let addTaskArea = document.getElementById("addTaskArea")
+let addTaskArea = document.getElementById("addTaskArea");
+let sBar = document.getElementById("searchBar");
+let selectBar = document.querySelector("#filter");
 
-let sBar = document.getElementById("searchBar")
 
 //Functions---------------
 function toggleTodoButtons(){
@@ -84,15 +85,15 @@ function toggleTodoButtons(){
 
 }
 
-
 // Events-----------
 mainEditBtn.addEventListener("click", (e) => {
     e.preventDefault();
     toggleTodoButtons();
-    addTaskArea.classList.add("hide")
+    addTaskArea.classList.add("hide");
 
-   
-    sBar.classList.add("hide")
+    sBar.classList.add("hide");
+    selectBar.style.width = "80%";
+    selectBar.style.borderRadius = "15px 0px 0px 15px";
 })
 
 goBackBtn.addEventListener("click", (e) => {
@@ -117,4 +118,6 @@ goBackBtn.addEventListener("click", (e) => {
         addTaskArea.classList.remove("hide");
 
         sBar.classList.remove("hide")
+        selectBar.style.width = "30%";
+        selectBar.style.borderRadius = "0px";
 });
