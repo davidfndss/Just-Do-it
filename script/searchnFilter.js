@@ -1,3 +1,4 @@
+import {    getStoredTasks, saveTasksToLocalStorage, createTask, updateTaskStatus, deleteTask } from "spript/localStorage.js"
 // Search and Filter form
 let snfForm = document.getElementById("searchnFilter")
 

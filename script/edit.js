@@ -1,3 +1,4 @@
+import {    getStoredTasks, saveTasksToLocalStorage, createTask, updateTaskStatus, deleteTask } from "spript/localStorage.js"
 //Atributions---------------
 let mainEditBtn = document.getElementById("mainEditBtn");
 let goBackBtn = document.getElementById("goBackBtn");
