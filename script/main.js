@@ -56,6 +56,11 @@ function createButtons(divToDo){
 
 function createTasks(){
 
+    
+
+    //saveTasksToLocalStorage();
+
+
     //remove the message "Nenhuma tarefa adicionada ainda :("
     let p = document.getElementById("message");
     if(p){p.remove()};
@@ -97,3 +102,5 @@ form.addEventListener("submit", (e) => {
 addBtn.addEventListener("click", function () {
     createTasks();
 })
+
+window.addEventListener("load", getStoredTasks())
