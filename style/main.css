@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: 'font'; 
-    src: url('font/font.ttf') format('truetype'); 
+    src: url(../font/font.ttf) format('truetype'); 
   }
 
 /* font-family: 'Paytone One', sans-serif;

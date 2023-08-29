@@ -1,4 +1,4 @@
-import {    getStoredTasks, saveTasksToLocalStorage, createTask, updateTaskStatus, deleteTask } from "spript/localStorage.js"
+import {    getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTask } from "/script/localStorage.js"
 // Search and Filter form
 let snfForm = document.getElementById("searchnFilter")
 

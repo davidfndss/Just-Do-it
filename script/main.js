@@ -1,4 +1,4 @@
-import {    getStoredTasks, saveTasksToLocalStorage, createTask, updateTaskStatus, deleteTask } from "spript/localStorage.js"
+import {    getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTask } from "/script/localStorage.js"
 /*-------- Atributions -------*/
 let input = document.getElementById("maininput");
 let form = document.getElementById("addtaskform");

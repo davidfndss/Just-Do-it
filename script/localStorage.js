@@ -1,20 +1,21 @@
-// LocalStorage.js
+//Ls == Local Storage
 
-function getStoredTasks() {
-    return JSON.parse(localStorage.getItem("tasks")) || [];
-  }
-  
-  function saveTasksToLocalStorage(tasks) {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }
-
-  function createTask(text, done = false) {
+  function createTaskOnLs(text, done = false) {
     const tasks = getStoredTasks();
     const newTask = { text, done };
     tasks.push(newTask);
-    saveTasksToLocalStorage(tasks);
+    saveTasksToLs(tasks);
     return newTask;
   }
+
+  function getStoredTasks() {
+    return JSON.parse(localStorage.getItem("tasks")) || [];
+  }
+  
+  function saveTasksToLs(tasks) {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+
 
   function updateTaskStatus(index, done) {
     const tasks = getStoredTasks();
@@ -25,7 +26,9 @@ function getStoredTasks() {
   function deleteTask(index) {
     const tasks = getStoredTasks();
     tasks.splice(index, 1);
-    saveTasksToLocalStorage(tasks);
+    saveTasksToLs(tasks);
   }
   
-  export { getStoredTasks, saveTasksToLocalStorage, createTask, updateTaskStatus, deleteTask };
+  export { getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTask };
+
+  //Ls == Local Storage
