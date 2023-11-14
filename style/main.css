@@ -116,7 +116,6 @@ button{
     color: white;
 }
 
-
 /*Search n Filter---------------------*/
 
 form#searchnFilter{
@@ -139,9 +138,7 @@ form#searchnFilter select{
     width: 30%;
     height: 37px;
     border: white;
-    
 }
-
 
 button#mainEditBtn, button#goBackBtn{
     background-color: var(--color2);
@@ -156,7 +153,6 @@ button#mainEditBtn:hover, button#goBackBtn:hover{
     border: var(--color3) solid 3px;
     transition: .5s ease;
 }
-
 
 input::placeholder{
     color: rgb(216, 216, 216);
@@ -198,7 +194,6 @@ div.todo input{
     border: none;
     background-color: transparent;
 }
-
 
 button{
     width: 20%;

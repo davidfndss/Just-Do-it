@@ -1,4 +1,5 @@
-import {    getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTask } from "/script/localStorage.js"
+
+
 //Atributions---------------
 let mainEditBtn = document.getElementById("mainEditBtn");
 let goBackBtn = document.getElementById("goBackBtn");

@@ -100,11 +100,12 @@ Grandes telas: + de 1200px
 /*Grandes telas: + de 1200px*/
 @media screen and (min-width: 1201px){
     main{
+        /*border: red solid 3px;*/
         width: 700px;
     }
 
     h1{
-        font-size: 40px;
+        font-size: 3rem;
     }
 
     div.todo input{

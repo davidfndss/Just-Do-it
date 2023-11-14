@@ -1,6 +1,7 @@
-import {    getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTask } from "/script/localStorage.js"
-// Search and Filter form
-let snfForm = document.getElementById("searchnFilter")
+import {    getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTsk } from "/script/localStorage.js"
+
+
+let searchAndFilterForm = document.getElementById("searchnFilter")
 
 // Search Input
 let searchBar = document.getElementById("searchBar");
@@ -15,57 +16,53 @@ searchBar.addEventListener("input", function search(){
      taskNames.forEach((taskName) => { 
         let divToDo = taskName.closest("div")
         if(searchBar.value.length > 0){
+
             if(regEx.test(taskName.value)){
             divToDo.classList.remove("hide");
-
             }else{
             divToDo.classList.add("hide");       
             }
-         
+
         }else{
             divToDo.classList.remove("hide")
         }
     });
 });
 
-
-
 //select
 let select = document.getElementById("filter")
 //filter function
 select.addEventListener("change", function filter(){
-    let todoOption = document.getElementById("todo");
-    let doneOption = document.getElementById("done");
 
-    let todoDivs = document.querySelectorAll(".todo");
-    let doneDivs = document.querySelectorAll(".done");
+    let allToDoDivs
+     = document.querySelectorAll(".todo");
+    let allDoneDivs = document.querySelectorAll(".done");
 
     if(select.value == "todo"){
-        doneDivs.forEach((done) => {
+        allDoneDivs.forEach((done) => {
             done.classList.add("hide");
         })
-        todoDivs.forEach((todo) => {
+        allToDoDivs.forEach((todo) => {
             todo.classList.remove("hide");
         });
     }else if(select.value == "done"){
-        doneDivs.forEach((done) => {
+        allDoneDivs.forEach((done) => {
             done.classList.remove("hide");
         })
-        todoDivs.forEach((todo) => {
+        allToDoDivs.forEach((todo) => {
             todo.classList.add("hide");
         });
     }else{
-        doneDivs.forEach((done) => {
+        allDoneDivs.forEach((done) => {
             done.classList.remove("hide");
         })
-        todoDivs.forEach((todo) => {
+        allToDoDivs.forEach((todo) => {
             todo.classList.remove("hide");
         });
-        console.log(select.value)
     };
 });
 
-
-snfForm.addEventListener("submit", function(e){
+// prevent default form submission
+searchAndFilterForm.addEventListener("submit", function(e){
     e.preventDefault()
 })
