@@ -1,4 +1,4 @@
-import {    getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTsk } from "/script/localStorage.js"
+import {    getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTaskOnLs } from "/script/localStorage.js"
 
 
 let searchAndFilterForm = document.getElementById("searchnFilter")

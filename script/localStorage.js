@@ -23,12 +23,12 @@
     saveTasksToLocalStorage(tasks);
   }
   
-  function deleteTsk(index) {
+  function deleteTaskOnLs(index) {
     const tasks = getStoredTasks();
     tasks.splice(index, 1);
     saveTasksToLs(tasks);
   }
   
-  export { getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTsk };
+  export { getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTaskOnLs };
 
   //Ls == Local Storage

@@ -1,4 +1,4 @@
-import {   getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTsk } from "/script/localStorage.js"
+import {   getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTaskOnLs } from "/script/localStorage.js"
 /*-------- Atributions -------*/
 const input = document.getElementById("maininput")
 const form = document.getElementById("addtaskform")
@@ -7,13 +7,12 @@ const addBtn = document.getElementById("addBtn")
 
 /*--------- Functions ---------*/
 
-function createButton(className,clickHandler, divToDo){
+function createButton(btnName,className,clickHandler, divToDo){
     const button = document.createElement("button")
     const span = document.createElement("span")
     span.classList.add("material-symbols-outlined")
-    //button.classList.add(className)
-    span.classList.add(className+"Btn")
-    span.textContent = className
+    button.classList.add(className)
+    span.textContent = btnName
     button.appendChild(span)
     divToDo.appendChild(button)
 
@@ -34,14 +33,28 @@ const markAsDone = (divToDo, doneBtn, deleteBtn) => {
 const deleteTask = (divToDo) => {
     //fade-out animation when delete task
     divToDo.classList.add("fadeOut")
+    
+    //get the text of the to do task that will be deleted
+    const getTextOfToDoTask = divToDo.children[0].children[0].value.trim()
+
+    //deletes the first item in the local storage list that has the same name as the "getTextOfToDoTask" 
+    const arrayOfTasks = getStoredTasks()
+    for (let i = 0; i < arrayOfTasks.length; i++){
+        if(arrayOfTasks[i].text == getTextOfToDoTask){
+            deleteTaskOnLs(arrayOfTasks.indexOf(arrayOfTasks[i]))
+            break
+        }
+    }
+    
     setTimeout(() => {
-        divToDo.remove()
-    }, 500)
+            divToDo.remove()
+        }, 500)
+
 }
 
 function createButtons(divToDo){
-    const doneBtn = createButton("done", () => markAsDone(divToDo, doneBtn, deleteBtn),divToDo)
-    const deleteBtn = createButton("delete", () => deleteTask(divToDo),divToDo)
+    const doneBtn = createButton("done","doneBtn", () => markAsDone(divToDo, doneBtn, deleteBtn),divToDo)
+    const deleteBtn = createButton("delete","deleteBtn", () => deleteTask(divToDo),divToDo)
     deleteBtn.classList.add("hide")
 }
 
@@ -61,18 +74,22 @@ function createTaskElement(toDoText){
 }
 
 function createTask(){
-    let p = document.getElementById("message")
+    // removes the message "Nenhuma tarefa adicionada ainda" before creating the task
+    const p = document.getElementById("message")
     if(p){p.remove()}
 
-    let toDoText = input.value
+    const toDoText = input.value
 
+    //if the imput is empty, alert the user
     if(!toDoText){
         input.focus()
         return alert("Dê um nome para sua tarefa")
     }
 
     createTaskElement(toDoText)
+    createTaskOnLs(toDoText)
 
+    //clear the input and focus for the next task
     input.focus()
     input.value = ""
 }
@@ -93,4 +110,17 @@ addBtn.addEventListener("click", function () {
     createTask()
 })
 
-window.addEventListener("load", getStoredTasks())
+// pega todas as tasks armazenadas no local storage e cria elas ao carregar da página
+window.addEventListener("load", async () => {
+    const storedTasksArray = getStoredTasks()
+    storedTasksArray.forEach(e=>{
+        //remove a mensagem se tiver alguma task no local storage
+        const p = document.getElementById("message")
+        if(p){p.remove()}
+
+        const toDoText = e.text
+        createTaskElement(toDoText)
+    })
+})
+
+//localStorage.clear()
