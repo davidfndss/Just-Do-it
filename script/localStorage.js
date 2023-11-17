@@ -20,7 +20,7 @@
   function updateTaskStatus(index, done) {
     const tasks = getStoredTasks();
     tasks[index].done = done;
-    saveTasksToLocalStorage(tasks);
+    saveTasksToLs(tasks);
   }
   
   function deleteTaskOnLs(index) {
@@ -28,7 +28,14 @@
     tasks.splice(index, 1);
     saveTasksToLs(tasks);
   }
+
+  function findTaskIndexOnLs(divToDo){
+    const getTextOfToDoTask = divToDo.children[0].children[0].value.trim()
+    const arrayOfTasks = getStoredTasks()
+    console.log(arrayOfTasks.findIndex(task => task.text == getTextOfToDoTask))
+    return arrayOfTasks.findIndex(task => task.text == getTextOfToDoTask)
+  }
   
-  export { getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTaskOnLs };
+  export { getStoredTasks, saveTasksToLs, createTaskOnLs, findTaskIndexOnLs, updateTaskStatus, deleteTaskOnLs };
 
   //Ls == Local Storage

@@ -1,4 +1,4 @@
-import {   getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTaskOnLs } from "/script/localStorage.js"
+import {   getStoredTasks, saveTasksToLs, createTaskOnLs, findTaskIndexOnLs, updateTaskStatus, deleteTaskOnLs } from "/script/localStorage.js"
 /*-------- Atributions -------*/
 const input = document.getElementById("maininput")
 const form = document.getElementById("addtaskform")
@@ -28,24 +28,20 @@ const markAsDone = (divToDo, doneBtn, deleteBtn) => {
 
     todoArea.appendChild(divToDo)
     divToDo.classList.remove("todo")
+
+    const getTextOfToDoTask = divToDo.children[0].children[0].value.trim()
+
+    updateTaskStatus(findTaskIndexOnLs(divToDo),true)
+
 }
 
 const deleteTask = (divToDo) => {
     //fade-out animation when delete task
     divToDo.classList.add("fadeOut")
-    
-    //get the text of the to do task that will be deleted
-    const getTextOfToDoTask = divToDo.children[0].children[0].value.trim()
 
-    //deletes the first item in the local storage list that has the same name as the "getTextOfToDoTask" 
-    const arrayOfTasks = getStoredTasks()
-    for (let i = 0; i < arrayOfTasks.length; i++){
-        if(arrayOfTasks[i].text == getTextOfToDoTask){
-            deleteTaskOnLs(arrayOfTasks.indexOf(arrayOfTasks[i]))
-            break
-        }
-    }
-    
+    deleteTaskOnLs(findTaskIndexOnLs(divToDo))
+
+    //timeout for the divToDo lasts until the animation ends
     setTimeout(() => {
             divToDo.remove()
         }, 500)
@@ -58,7 +54,7 @@ function createButtons(divToDo){
     deleteBtn.classList.add("hide")
 }
 
-function createTaskElement(toDoText){ 
+function createTaskElement(toDoText, done = false){ 
     //remove the message "Nenhuma tarefa adicionada ainda :("
 
     let divToDo = document.createElement("div")
@@ -70,6 +66,11 @@ function createTaskElement(toDoText){
 
     createButtons(divToDo)
     todoArea.appendChild(divToDo)
+    if(done == true){
+        console.log("passou aqui")
+        divToDo.classList.remove("todo")
+        divToDo.classList.add("done")
+    }
     addTaskAnimation(divToDo)
 }
 
@@ -119,7 +120,12 @@ window.addEventListener("load", async () => {
         if(p){p.remove()}
 
         const toDoText = e.text
-        createTaskElement(toDoText)
+        
+        if(e.done == false){
+            createTaskElement(toDoText)
+        }else{
+            createTaskElement(toDoText, true)
+        }
     })
 })
 
