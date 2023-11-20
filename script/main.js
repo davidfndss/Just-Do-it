@@ -3,6 +3,7 @@ import {   getStoredTasks, saveTasksToLs, createTaskOnLs, findTaskIndexOnLs, upd
 const input = document.getElementById("maininput")
 const form = document.getElementById("addtaskform")
 const todoArea = document.getElementById("to-do-area")
+const doneArea = document.getElementById("done-area")
 const addBtn = document.getElementById("addBtn")
 
 /*--------- Functions ---------*/
@@ -26,17 +27,14 @@ const markAsDone = (divToDo, doneBtn, deleteBtn) => {
     divToDo.appendChild(deleteBtn)
     deleteBtn.classList.remove("hide")
 
-    todoArea.appendChild(divToDo)
+    doneArea.appendChild(divToDo)
     divToDo.classList.remove("todo")
 
-    const getTextOfToDoTask = divToDo.children[0].children[0].value.trim()
-
     updateTaskStatus(findTaskIndexOnLs(divToDo),true)
-
 }
 
 const deleteTask = (divToDo) => {
-    //fade-out animation when delete task
+    // adds the fade-out animation when the task is being deleted
     divToDo.classList.add("fadeOut")
 
     deleteTaskOnLs(findTaskIndexOnLs(divToDo))
@@ -48,29 +46,49 @@ const deleteTask = (divToDo) => {
 
 }
 
-function createButtons(divToDo){
-    const doneBtn = createButton("done","doneBtn", () => markAsDone(divToDo, doneBtn, deleteBtn),divToDo)
+function createButtons(divToDo, done){
+
+    // creates the delete button for all tasks, but hidden
     const deleteBtn = createButton("delete","deleteBtn", () => deleteTask(divToDo),divToDo)
     deleteBtn.classList.add("hide")
+
+    // if the task current status is "to-do", creates the doneBtn, but if the current status is "done", it unhides the deleteBtn
+    if(done === false){
+        const doneBtn = createButton("done","doneBtn", () => markAsDone(divToDo, doneBtn, deleteBtn),divToDo)
+    }else{
+        divToDo.appendChild(deleteBtn)
+        deleteBtn.classList.remove("hide")
+    }
+    
 }
 
+// the done parameter receives the boolean false as default, because when the code load the tasks from LocalStorage we need to know if the task is already done or not, it defines the class that the div will receive.
 function createTaskElement(toDoText, done = false){ 
-    //remove the message "Nenhuma tarefa adicionada ainda :("
-
+    
+    // creates the div
     let divToDo = document.createElement("div")
-    divToDo.classList.add("todo")
-
-    let li = document.createElement("li")
-    li.innerHTML = `<input type="text" class="taskName" value=" ${toDoText} " readonly>`
-    divToDo.appendChild(li)
-
-    createButtons(divToDo)
-    todoArea.appendChild(divToDo)
-    if(done == true){
-        console.log("passou aqui")
-        divToDo.classList.remove("todo")
+    
+    if(done === false){
+        divToDo.classList.add("todo")
+    }else{
         divToDo.classList.add("done")
     }
+    
+
+    let li = document.createElement("li")
+    li.innerHTML = `<input type="text" class="taskText" value=" ${toDoText} " readonly>`
+    divToDo.appendChild(li)
+
+    createButtons(divToDo, done)
+
+    todoArea.appendChild(divToDo)
+
+    if(done === false){
+        todoArea.appendChild(divToDo)
+    }else{
+        doneArea.appendChild(divToDo)
+    }
+
     addTaskAnimation(divToDo)
 }
 
@@ -103,24 +121,28 @@ const addTaskAnimation = (divToDo) => {
 
 
 /*----------- Events ----------*/
+// prevents the default behavior of all the form elements
 form.addEventListener("submit", (e) => {
     e.preventDefault()
 })
 
+// create one task using the actual value in the input, and clear the input for the next
 addBtn.addEventListener("click", function () {
     createTask()
 })
 
-// pega todas as tasks armazenadas no local storage e cria elas ao carregar da página
+// get all the tasks on the local strage and brings one by one to the screen
 window.addEventListener("load", async () => {
     const storedTasksArray = getStoredTasks()
     storedTasksArray.forEach(e=>{
-        //remove a mensagem se tiver alguma task no local storage
+
+        //removes the message "Nenhuma tarefa adicionada ainda :(" if theres any task on the Local Storage
         const p = document.getElementById("message")
         if(p){p.remove()}
 
         const toDoText = e.text
         
+        // ensure that the tasks with status "to-do" will be at todoArea, and the tastks with the status "done" will be at doneArea
         if(e.done == false){
             createTaskElement(toDoText)
         }else{

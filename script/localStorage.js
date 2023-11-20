@@ -16,7 +16,6 @@
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
-
   function updateTaskStatus(index, done) {
     const tasks = getStoredTasks();
     tasks[index].done = done;
@@ -32,8 +31,13 @@
   function findTaskIndexOnLs(divToDo){
     const getTextOfToDoTask = divToDo.children[0].children[0].value.trim()
     const arrayOfTasks = getStoredTasks()
-    console.log(arrayOfTasks.findIndex(task => task.text == getTextOfToDoTask))
+    //console.log(arrayOfTasks.findIndex(task => task.text == getTextOfToDoTask))
     return arrayOfTasks.findIndex(task => task.text == getTextOfToDoTask)
+  }
+
+  function editTaskTextOnLs(index, newText){
+    const arrayOfTasks = getStoredTasks()
+    arrayOfTasks[index].text = newText
   }
   
   export { getStoredTasks, saveTasksToLs, createTaskOnLs, findTaskIndexOnLs, updateTaskStatus, deleteTaskOnLs };
