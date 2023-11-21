@@ -1,4 +1,4 @@
-import {   getStoredTasks, saveTasksToLs, createTaskOnLs, findTaskIndexOnLs, updateTaskStatus, deleteTaskOnLs } from "/script/localStorage.js"
+import {   getStoredTasks, createTaskOnLs, findTaskIndexOnLs, updateTaskStatus, deleteTaskOnLs } from "/script/localStorage.js"
 /*-------- Atributions -------*/
 const input = document.getElementById("maininput")
 const form = document.getElementById("addtaskform")
