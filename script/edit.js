@@ -1,11 +1,11 @@
-
+import { editTaskTextOnLs } from "./localStorage.js"
 
 //Atributions---------------
-let mainEditBtn = document.getElementById("mainEditBtn");
-let goBackBtn = document.getElementById("goBackBtn");
-let addTaskArea = document.getElementById("addTaskArea");
-let searchBar = document.getElementById("searchBar");
-let selectBar = document.querySelector("#filter");
+let mainEditBtn = document.getElementById("mainEditBtn")
+let goBackBtn = document.getElementById("goBackBtn")
+let addTaskArea = document.getElementById("addTaskArea")
+let searchBar = document.getElementById("searchBar")
+let selectBar = document.querySelector("#filter")
 
 
 //Functions---------------
@@ -20,7 +20,7 @@ function editModeOn(){
     goBackBtn.classList.remove("hide")
 
     // all of the todo tasks receive the edit and save buttons
-    let allTodoTasks = document.querySelectorAll(".todo");
+    let allTodoTasks = document.querySelectorAll(".todo")
     allTodoTasks.forEach((todo) => {
         createEditModeButtons(todo)
     });
@@ -32,57 +32,64 @@ function hideAllDoneBtns(boolean){
     let allDoneBtns = document.querySelectorAll(".doneBtn");
     if(boolean === true){
         allDoneBtns.forEach((doneBtn) => {
-            doneBtn.classList.add("hide");  
-        });
+            doneBtn.classList.add("hide")  
+        })
     }else{
         
         allDoneBtns.forEach((doneBtn) => {
-        doneBtn.classList.remove("hide");  
-        });
+        doneBtn.classList.remove("hide")  
+        })
     }
 }
 
 function createEditModeButtons(todo){
     // creates the editBtn's
-    let editBtn = document.createElement("button");
-    let editSpan = document.createElement("span");
-    editSpan.classList.add("material-symbols-outlined");
-    editBtn.classList.add("editBtn");
-    editSpan.innerText = "edit";
-    editBtn.appendChild(editSpan);
+    let editBtn = document.createElement("button")
+    let editSpan = document.createElement("span")
+    editSpan.classList.add("material-symbols-outlined")
+    editBtn.classList.add("editBtn")
+    editSpan.innerText = "edit"
+    editBtn.appendChild(editSpan)
     todo.appendChild(editBtn)
 
     // creates the saveBtn's and hides it initially
-    let saveBtn = document.createElement("button");
-    let saveSpan = document.createElement("span");
-    saveSpan.classList.add("material-symbols-outlined");
-    saveBtn.classList.add("saveBtn");
-    saveSpan.innerText = "save";
-    saveBtn.appendChild(saveSpan);
+    let saveBtn = document.createElement("button")
+    let saveSpan = document.createElement("span")
+    saveSpan.classList.add("material-symbols-outlined")
+    saveBtn.classList.add("saveBtn")
+    saveSpan.innerText = "save"
+    saveBtn.appendChild(saveSpan)
 
     defineListenersToEditModeButtons(todo, editBtn, saveBtn)
 }
 
 function defineListenersToEditModeButtons(todo, editBtn, saveBtn){
 
+    // this variable will be used at editTaskTextOnLs from localStorage.js
+    let previousTaskText =  ""
+
     let taskName = selectTaskText(editBtn)
-    // taskName is an input field with the read-only attribute. The editBtn disables the read-only attribute to allow editing to the input value.
+    // taskName is an input field with the read-only attribute. The editBtn disables the read-only attribute to allow editing to the input value
         editBtn.addEventListener("click", () => {
-            hideAllEditBtns()
-            taskName.removeAttribute("readonly");
+            hideAllEditBtns(true)
+            taskName.removeAttribute("readonly")
             taskName.value = taskName.value.trim()
-            taskName.focus();
+            taskName.focus()
             todo.appendChild(saveBtn)
             editBtn.classList.add("hide")
+            // gets the previous task text, the talue of the taskName input before being edited
+            previousTaskText = selectTaskText(editBtn).value
         })
 
     // the saveBtn enables the read-only again
         saveBtn.addEventListener("click", () => {
             hideAllEditBtns(false)
-            taskName.value = ` ${taskName.value} ` // I prefer to le this spaces before and after the task text just for visual preferences
+            taskName.value = ` ${taskName.value} ` // I prefer to let this spaces before and after the task text just for visual preferences
             taskName.setAttribute("readonly", true);
             saveBtn.remove()
             editBtn.classList.remove("hide")
+            // calls the function that updates the task name on local storage
+            editTaskTextOnLs(previousTaskText, taskName.value)
         })
 }
 
@@ -112,35 +119,35 @@ function hideAllEditBtns(boolean){
 function hideOtherForms(boolean){
 
     if(boolean === true){
-        addTaskArea.classList.add("hide");
-        searchBar.classList.add("hide");
-        selectBar.style.width = "80%";
-        selectBar.style.borderRadius = "15px 0px 0px 15px";
+        addTaskArea.classList.add("hide")
+        searchBar.classList.add("hide")
+        selectBar.style.width = "80%"
+        selectBar.style.borderRadius = "15px 0px 0px 15px"
     }else{
-        mainEditBtn.classList.remove("hide");
-        goBackBtn.classList.add("hide");
-        addTaskArea.classList.remove("hide");
+        mainEditBtn.classList.remove("hide")
+        goBackBtn.classList.add("hide")
+        addTaskArea.classList.remove("hide")
         searchBar.classList.remove("hide")
-        selectBar.style.width = "30%";
-        selectBar.style.borderRadius = "0px";
+        selectBar.style.width = "30%"
+        selectBar.style.borderRadius = "0px"
     }
 }
 
 function removeAllEditBtns(){
-    let allEditBtns = document.querySelectorAll(".editBtn");
+    let allEditBtns = document.querySelectorAll(".editBtn")
     allEditBtns.forEach((editBtn) => {
-        editBtn.remove();
+        editBtn.remove()
     })
 }
 
 // Events-----------
 mainEditBtn.addEventListener("click", () => {
-    editModeOn();
-    hideOtherForms(true); 
+    editModeOn()
+    hideOtherForms(true) 
 })
 
 goBackBtn.addEventListener("click", () => {
-    hideOtherForms(false); // unhide all the other forms after click the arrow back button
-    removeAllEditBtns(); // removes all editBtn's
-    hideAllDoneBtns(false); // unhide all the doneBtn's
+    hideOtherForms(false) // unhide all the other forms after click the arrow back button
+    removeAllEditBtns() // removes all editBtn's
+    hideAllDoneBtns(false) // unhide all the doneBtn's
 });

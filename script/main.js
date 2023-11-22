@@ -8,58 +8,25 @@ const addBtn = document.getElementById("addBtn")
 
 /*--------- Functions ---------*/
 
-function createButton(btnName,className,clickHandler, divToDo){
-    const button = document.createElement("button")
-    const span = document.createElement("span")
-    span.classList.add("material-symbols-outlined")
-    button.classList.add(className)
-    span.textContent = btnName
-    button.appendChild(span)
-    divToDo.appendChild(button)
+function createTask(){
+    // removes the message "Nenhuma tarefa adicionada ainda" before creating the task
+    const p = document.getElementById("message")
+    if(p){p.remove()}
 
-    button.addEventListener("click", clickHandler)
-    return button
-}
+    const toDoText = input.value
 
-const markAsDone = (divToDo, doneBtn, deleteBtn) => {
-    divToDo.classList.add("done")
-    doneBtn.remove()
-    divToDo.appendChild(deleteBtn)
-    deleteBtn.classList.remove("hide")
-
-    doneArea.appendChild(divToDo)
-    divToDo.classList.remove("todo")
-
-    updateTaskStatus(findTaskIndexOnLs(divToDo),true)
-}
-
-const deleteTask = (divToDo) => {
-    // adds the fade-out animation when the task is being deleted
-    divToDo.classList.add("fadeOut")
-
-    deleteTaskOnLs(findTaskIndexOnLs(divToDo))
-
-    //timeout for the divToDo lasts until the animation ends
-    setTimeout(() => {
-            divToDo.remove()
-        }, 500)
-
-}
-
-function createButtons(divToDo, done){
-
-    // creates the delete button for all tasks, but hidden
-    const deleteBtn = createButton("delete","deleteBtn", () => deleteTask(divToDo),divToDo)
-    deleteBtn.classList.add("hide")
-
-    // if the task current status is "to-do", creates the doneBtn, but if the current status is "done", it unhides the deleteBtn
-    if(done === false){
-        const doneBtn = createButton("done","doneBtn", () => markAsDone(divToDo, doneBtn, deleteBtn),divToDo)
-    }else{
-        divToDo.appendChild(deleteBtn)
-        deleteBtn.classList.remove("hide")
+    //if the imput is empty, alert the user
+    if(!toDoText){
+        input.focus()
+        return alert("Dê um nome para sua tarefa")
     }
-    
+
+    createTaskElement(toDoText)
+    createTaskOnLs(toDoText)// this function is from localStorage.js
+
+    //clear the input and focus for the next task
+    input.focus()
+    input.value = ""
 }
 
 // the done parameter receives the boolean false as default, because when the code load the tasks from LocalStorage we need to know if the task is already done or not, it defines the class that the div will receive.
@@ -68,6 +35,7 @@ function createTaskElement(toDoText, done = false){
     // creates the div
     let divToDo = document.createElement("div")
     
+    // sets the class acording to the task status: to-do or done
     if(done === false){
         divToDo.classList.add("todo")
     }else{
@@ -92,25 +60,20 @@ function createTaskElement(toDoText, done = false){
     addTaskAnimation(divToDo)
 }
 
-function createTask(){
-    // removes the message "Nenhuma tarefa adicionada ainda" before creating the task
-    const p = document.getElementById("message")
-    if(p){p.remove()}
+function createButtons(divToDo, done){
 
-    const toDoText = input.value
+    // creates the delete button for all tasks, but hidden
+    const deleteBtn = createButton("delete","deleteBtn", () => deleteTask(divToDo),divToDo)
+    deleteBtn.classList.add("hide")
 
-    //if the imput is empty, alert the user
-    if(!toDoText){
-        input.focus()
-        return alert("Dê um nome para sua tarefa")
+    // if the task current status is "to-do", creates the doneBtn, but if the current status is "done", it unhides the deleteBtn
+    if(done === false){
+        const doneBtn = createButton("done","doneBtn", () => markAsDone(divToDo, doneBtn, deleteBtn),divToDo)
+    }else{
+        divToDo.appendChild(deleteBtn)
+        deleteBtn.classList.remove("hide")
     }
-
-    createTaskElement(toDoText)
-    createTaskOnLs(toDoText)
-
-    //clear the input and focus for the next task
-    input.focus()
-    input.value = ""
+    
 }
 
 const addTaskAnimation = (divToDo) => {
@@ -119,6 +82,41 @@ const addTaskAnimation = (divToDo) => {
     }, 300)
 }
 
+// creates the button, and gives the button an eventListener that deals with the parent div
+function createButton(btnName,className,clickHandler, divToDo){
+    const button = document.createElement("button")
+    const span = document.createElement("span")
+    span.classList.add("material-symbols-outlined")
+    button.classList.add(className)
+    span.textContent = btnName
+    button.appendChild(span)
+    divToDo.appendChild(button)
+    button.addEventListener("click", clickHandler)
+    return button
+}
+
+const deleteTask = (divToDo) => {
+    // adds the fade-out animation when the task is being deleted
+    divToDo.classList.add("fadeOut")
+    // deletes task on the local storage
+    deleteTaskOnLs(findTaskIndexOnLs(divToDo))
+    //timeout for the divToDo lasts until the animation ends
+    setTimeout(() => {
+            divToDo.remove()
+        }, 500)
+}
+
+// mark the parent div from to-do to done and also calls the function that upadates the task status on the local storage
+const markAsDone = (divToDo, doneBtn, deleteBtn) => {
+    divToDo.classList.remove("todo")
+    divToDo.classList.add("done")
+    doneBtn.remove()
+    divToDo.appendChild(deleteBtn)
+    deleteBtn.classList.remove("hide")
+
+    doneArea.appendChild(divToDo)
+    updateTaskStatus(findTaskIndexOnLs(divToDo),true)
+}
 
 /*----------- Events ----------*/
 // prevents the default behavior of all the form elements
@@ -131,7 +129,7 @@ addBtn.addEventListener("click", function () {
     createTask()
 })
 
-// get all the tasks on the local strage and brings one by one to the screen
+// get all the tasks on the local strage and brings one by one to the todoArea and doneArea
 window.addEventListener("load", async () => {
     const storedTasksArray = getStoredTasks()
     storedTasksArray.forEach(e=>{
@@ -150,5 +148,4 @@ window.addEventListener("load", async () => {
         }
     })
 })
-
 //localStorage.clear()

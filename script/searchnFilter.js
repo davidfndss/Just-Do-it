@@ -1,22 +1,18 @@
-import {    getStoredTasks, saveTasksToLs, createTaskOnLs, updateTaskStatus, deleteTaskOnLs } from "/script/localStorage.js"
-
-
-let searchAndFilterForm = document.getElementById("searchnFilter")
+const searchAndFilterForm = document.getElementById("searchnFilter")
 
 // Search Input
-let searchBar = document.getElementById("searchBar");
-
-//Search function
+const searchBar = document.getElementById("searchBar")
+// Search function
 searchBar.addEventListener("input", function search(){
-    
-    let taskNames = document.querySelectorAll(".taskName");
+    const allTaskNames = document.querySelectorAll(".taskText")
 
-    let regEx = new RegExp(searchBar.value, "i")
+    // regular expression that uses the value of the search bar
+    const regEx = new RegExp(searchBar.value, "i")
      
-     taskNames.forEach((taskName) => { 
-        let divToDo = taskName.closest("div")
+    // for each task, if the taskName or taskText have the searchBar.value on it, the parent div appears, else, the parent div will be hidden
+     allTaskNames.forEach((taskName) => { 
+        const divToDo = taskName.closest("div")
         if(searchBar.value.length > 0){
-
             if(regEx.test(taskName.value)){
             divToDo.classList.remove("hide");
             }else{
@@ -26,43 +22,42 @@ searchBar.addEventListener("input", function search(){
         }else{
             divToDo.classList.remove("hide")
         }
-    });
-});
+    })
+})
 
 //select
-let select = document.getElementById("filter")
+const select = document.getElementById("filter")
 //filter function
 select.addEventListener("change", function filter(){
-
-    let allToDoDivs
-     = document.querySelectorAll(".todo");
-    let allDoneDivs = document.querySelectorAll(".done");
+    const allToDoDivs
+     = document.querySelectorAll(".todo")
+    const allDoneDivs = document.querySelectorAll(".done")
 
     if(select.value == "todo"){
         allDoneDivs.forEach((done) => {
-            done.classList.add("hide");
+            done.classList.add("hide")
         })
         allToDoDivs.forEach((todo) => {
-            todo.classList.remove("hide");
-        });
+            todo.classList.remove("hide")
+        })
     }else if(select.value == "done"){
         allDoneDivs.forEach((done) => {
-            done.classList.remove("hide");
+            done.classList.remove("hide")
         })
         allToDoDivs.forEach((todo) => {
-            todo.classList.add("hide");
-        });
+            todo.classList.add("hide")
+        })
     }else{
         allDoneDivs.forEach((done) => {
-            done.classList.remove("hide");
+            done.classList.remove("hide")
         })
         allToDoDivs.forEach((todo) => {
-            todo.classList.remove("hide");
-        });
-    };
-});
+            todo.classList.remove("hide")
+        })
+    }
+})
 
 // prevent default form submission
-searchAndFilterForm.addEventListener("submit", function(e){
+searchAndFilterForm.addEventListener("submit", (e) => {
     e.preventDefault()
 })
