@@ -68,7 +68,8 @@ main{
     border-radius: 15px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     border: 2px solid var(--color10);
-    transition: transform .5s, height .2s ease;
+    transition: width 1s, height 1s;
+    transition-timing-function: ease;
 }
 
 h1{
